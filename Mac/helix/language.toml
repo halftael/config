@@ -1,0 +1,63 @@
+# ----------- python pyright --------------
+
+# https://github.com/microsoft/pyright
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+# 禁用 diagnostics, format, 使用 ruff-lsp
+except-features = ["diagnostics", "format"]
+
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+# https://microsoft.github.io/pyright/#/configuration
+#  为 pyright 在 pyproject.toml 中设置 venv 路径适配 rye 等 venv 
+# ```toml
+#  [tool.pyright]
+#  venvPath = "."
+#  venv = ".venv"
+# ```
+
+# locale seting : LANG=zh-cn 没有使用zh_cn posix标准
+[language-server.pyright.config]
+settings.python.analysis = { autoImportCompletions = true, typeCheckingMode = "on", autoSearchPaths = true, useLibraryCodeForTypes = true, diagnosticMode = "openFilesOnly" }
+
+[language-server.pylsp.config]
+pylsp.plugins.rope_autoimport.enabled = true
+
+# https://github.com/mtshiba/pylyzer
+[language-server.pylyzer]
+command = "pylyzer"
+args = ["--server"]
+
+# https://github.com/astral-sh/ruff-lsp
+[language-server.ruff-lsp]
+command = "ruff-lsp"
+args = ["--ignore", "E501", "E402"]
+
+# support ruff check
+# support ruff format
+
+[[language]]
+name = "python"
+file-types = [
+  "py",
+  "pyi",
+  "py3",
+  "pyw",
+  "ptl",
+  ".pythonstartup",
+  ".pythonrc",
+  "SConstruct",
+  "mel",
+]
+roots = ["pyproject.toml", "pyrightconfig.json"]
+# formatter = { command = "ruff", args = ["format"] }
+language-servers = ["pyright", "ruff-lsp", "hx-lsp", "lsp-ai"]
+auto-format = true
+
+
+
+
+[[language]]
+name = "markdown"
+text-width = 80
+zen-mode = true

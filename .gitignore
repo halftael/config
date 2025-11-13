@@ -1,0 +1,21 @@
+    # macOS specific
+    .DS_Store
+    .Spotlight-V100
+    .Trashes
+    ._*
+
+    # Xcode
+    build/
+    DerivedData/
+    *.xcarchive/
+    *.ipa
+    *.dSYM
+    *.xcodeproj/xcuserdata/
+    *.xcodeproj/project.xcworkspace/xcuserdata/
+
+    # Node.js
+    node_modules/
+
+    # Environment variables
+    .env
+
